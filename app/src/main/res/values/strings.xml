@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Den fedeste app</string>
+    <string name="den_fede_knap">Den fede knap</string>
+    <string name="hej_med_dig_verden">Hej med dig verden</string>
+    <string name="det_fede_billede" />
+    <string name="name">Name</string>
+    <string name="det_fedeste_view">Det fedeste view</string>
+    <string name="about_us">About us</string>
+    <string name="buy_stuff">Buy stuff</string>
+    <string name="home">Home</string>
+    <string name="se_vejret">Se vejret</string>
+    <string name="post_nr">Post nr.</string>
+    <string name="vejret">Vejret</string>
+    <string name="buy_a_phone">Buy a phone</string>
+    <string name="website_url">Website URL</string>
+    <string name="chrome">chrome</string>
+    <string name="search">search</string>
+    <string name="Galge_leg" />
+    <string name="galge_leg">Galge leg</string>
+    <string name="forkert">Forkert</string>
+    <string name="galge_leg_billede" />
+    <string name="button">Button</string>
+    <string name="bokstav">Bokstav</string>
+    <string name="_">_</string>
+    <string name="___" />
+    <string name="under">___</string>
+    <string name="a">A</string>
+    <string name="new_game">New game</string>
+    <string name="try_again">Try again</string>
+</resources>
