@@ -3,9 +3,8 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +17,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
@@ -43,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     // Possible words
     List<String> possibleWords;
 
+    // Set Time before an after
+    long timeBefore = 0;
+    long timeAfter = 0;
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,8 +59,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         wordGrid = findViewById(R.id.wordGrid);
         bokstav = findViewById(R.id.bokstav);
 
+        // Get information from intent
+        wordPointer = getIntent().getIntExtra("EXTRA_LEVEL",0);
+
         //initializing wordgrid, lettergrid and their corresponding arrayadaapters
         newGame();
+
+        // Set Time before
+        timeBefore = new Date().getTime();
 
         // Make a clicklistner on the lettergrid
         letterGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -81,14 +91,17 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 if(wrongGuess > 6){
                     TextView title = findViewById(R.id.title);
                     title.setText("Du har tabt");
-                    newGameButtons();
+                    goToLoseActivity();
                 }
 
                 if(wordGuessed(wordList,word)){
+                    goToWinActivity();
+                    /*
                     TextView title = findViewById(R.id.title);
                     title.setText("Du har vundet");
                     wordPointer++;
                     newGame();
+                    */
                 }
 
                 letterAdapter.notifyDataSetChanged();
@@ -97,22 +110,28 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
 
-    public void newGameButtons(){
-        for(int i=0;i<letterAdapter.getCount();i++) {
-            // Get the color of child
-            int color = Color.TRANSPARENT;
-            Drawable background = letterGrid.getChildAt(i).findViewById(R.id.letter_button).getBackground();
-            if (background instanceof ColorDrawable)
-                color = ((ColorDrawable) background).getColor();
 
-            // Remove background color of letter_button
-            if (color != Color.parseColor("#FFFFFF")) {
-                letterGrid.getChildAt(i).setEnabled(false);
-                letterGrid.getChildAt(i).setOnClickListener(null);
-                letterGrid.getChildAt(i).findViewById(R.id.letter_button).setBackgroundColor(Color.parseColor("#eb4034"));
-            }
-        }
+    public void goToLoseActivity(){
+        Intent intent = new Intent(this, LoseActivity.class);
+        intent.putExtra("EXTRA_WORD", word);
+        startActivity(intent);
     }
+
+    public void goToWinActivity(){
+        // Set Time After
+        timeAfter = new Date().getTime();
+        // Calculate score
+        int score = (int) 100000 - ((int)timeAfter - (int)timeBefore);
+
+        Intent intent = new Intent(this, WinActivity.class);
+        intent.putExtra("EXTRA_SCORE", score);
+        intent.putExtra("EXTRA_LEVEL", wordPointer);
+        intent.putExtra("EXTRA_WORD", word);
+        startActivity(intent);
+    }
+
+
+
 
     public boolean wordGuessed(List<String> wordList, String word){
         StringBuilder guessedword = new StringBuilder();
