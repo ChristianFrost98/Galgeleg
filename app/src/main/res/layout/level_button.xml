@@ -17,7 +17,7 @@
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/levelButton"
         app:layout_constraintTop_toTopOf="@+id/levelButton"
-        app:srcCompat="@drawable/checkmark"/>
+        app:srcCompat="@drawable/checkmark" />
 
 
     <TextView

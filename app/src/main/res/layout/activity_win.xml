@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Acticity.WinActivity">
+    tools:context=".Activity.WinActivity">
 
     <TextView
         android:id="@+id/wonTitle"
@@ -78,52 +78,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/score" />
+        app:layout_constraintTop_toBottomOf="@+id/score"
+        />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/try_again_won"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
+        <ImageView
+            android:id="@+id/view_levels"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@android:color/holo_red_light"
-            android:gravity="center"
-            android:text="@string/try_again"
-            android:textColor="@android:color/background_light"
-            android:onClick="onClick"
-            android:clickable="true"
-            android:focusable="true" />
-
-        <TextView
-            android:id="@+id/next_level"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_weight="1"
-            android:background="#8B388E3C"
-            android:gravity="center"
-            android:text="@string/next_level"
-            android:textColor="@android:color/background_light"
-            android:onClick="onClick"
+            android:contentDescription="@string/view_level_button"
+            android:src="@mipmap/ic_launcher"
+            android:tint="#8C9EFF"
+            app:srcCompat="@drawable/menu"
             android:clickable="true"
             android:focusable="true"/>
 
+        <ImageView
+            android:id="@+id/next_level"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@mipmap/ic_launcher"
+            android:tint="#388E3C"
+            app:srcCompat="@drawable/arrow_right"
+            android:contentDescription="@string/next_level_button"
+            android:clickable="true"
+            android:focusable="true" />
+
 
     </LinearLayout>
+
+
+
 
     <TextView
         android:id="@+id/word_won"

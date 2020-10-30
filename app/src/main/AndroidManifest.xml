@@ -13,12 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".Acticity.LevelActivity" />
-        <activity android:name=".Acticity.WinActivity" />
-        <activity android:name=".Acticity.LoseActivity" />
-        <activity android:name=".Acticity.GeussingActivity" />
+        <activity android:name=".Activity.LevelActivity" />
+        <activity android:name=".Activity.WinActivity" />
+        <activity android:name=".Activity.LoseActivity" />
+        <activity android:name=".Activity.GeussingActivity" />
         <activity
-            android:name=".Acticity.OpstartActivity"
+            android:name=".Activity.OpstartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,33 +1,25 @@
-package com.example.myapplication.Acticity;
+package com.example.myapplication.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.example.myapplication.Logic.HangmanLogic;
 import com.example.myapplication.Model.HangmanModel;
+import com.example.myapplication.Adapter.LevelAdapter;
 import com.example.myapplication.R;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Map;
 
 public class LevelActivity extends AppCompatActivity {
     ArrayAdapter<String> levelAdapter;
-    ArrayList<String> levels;
     GridView levelGrid;
-    private SharedPreferences prefs;
-
+    SharedPreferences prefs;
 
 
     @Override
@@ -35,24 +27,18 @@ public class LevelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
 
-        // Instantiate lists
-        levels = new ArrayList<>();
+        // Retrieve store levels data
+        HangmanLogic.storePrefs(this);
+        HangmanLogic.retrievePrefs(this);
 
-        // Hent af views
+
+        // Iniciate view
         levelGrid = findViewById(R.id.levelGrid);
 
-        // Set levels
-        int level = 1;
-        for(int i=0;i<HangmanModel.possibleWords.size()-1;i++){
-            levels.add(""+level);
-            level++;
-        }
-        //data bind GridView with ArrayAdapter
-        levelAdapter = new ArrayAdapter<>(this, R.layout.level_button, R.id.levelButton, levels);
-        levelGrid.setAdapter(levelAdapter);
+        LevelAdapter myAdapter=new LevelAdapter(this,R.layout.level_button, HangmanModel.levels);
         levelGrid.setNumColumns(4);
+        levelGrid.setAdapter(myAdapter);
 
-        // Make a clicklistner on the lettergrid
         levelGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -60,6 +46,8 @@ public class LevelActivity extends AppCompatActivity {
                 goToLoseActivity(position);
             }
         });
+
+
     }
 
 
@@ -68,6 +56,7 @@ public class LevelActivity extends AppCompatActivity {
         intent.putExtra("EXTRA_LEVEL", level);
         startActivity(intent);
     }
+
 }
 
 

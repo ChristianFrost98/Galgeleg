@@ -1,4 +1,4 @@
-package com.example.myapplication.Acticity;
+package com.example.myapplication.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,9 +10,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.myapplication.Model.HangmanModel;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -24,8 +26,8 @@ public class WinActivity extends AppCompatActivity {
 
     // Layout elements
     LinearLayout highScoreList;
-    TextView try_again;
-    TextView next_level;
+    ImageView view_levels;
+    ImageView next_level;
 
     // Ekstra information
     int score = 0;
@@ -40,7 +42,7 @@ public class WinActivity extends AppCompatActivity {
 
         // Hent af views
         highScoreList = findViewById(R.id.highScoreList);
-        try_again = findViewById(R.id.try_again_won);
+        view_levels = findViewById(R.id.view_levels);
         next_level = findViewById(R.id.next_level);
 
         // Get ekstra from intent
@@ -84,15 +86,23 @@ public class WinActivity extends AppCompatActivity {
         }
     }
 
+
     public void onClick(View view) {
         if(view == next_level){
-            Intent intent = new Intent(this, GeussingActivity.class);
-            intent.putExtra("EXTRA_LEVEL", ++level);
-            startActivity(intent);
-        } else if(view == try_again){
-            Intent intent = new Intent(this, GeussingActivity.class);
+            if(++level == HangmanModel.levels.size()){
+                Intent intent = new Intent(this, LevelActivity.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(this, GeussingActivity.class);
+                intent.putExtra("EXTRA_LEVEL", ++level);
+                startActivity(intent);
+            }
+        } else if(view == view_levels){
+            Intent intent = new Intent(this, LevelActivity.class);
             intent.putExtra("EXTRA_LEVEL", level);
             startActivity(intent);
         }
     }
+
+
 }
