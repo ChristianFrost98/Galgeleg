@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Acticity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,12 +15,15 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapplication.Logic.HangmanLogic;
+import com.example.myapplication.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class GeussingActivity extends AppCompatActivity implements OnClickListener {
     ImageView galge;
     GridView letterGrid;
     GridView wordGrid;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         wordPointer = getIntent().getIntExtra("EXTRA_LEVEL",0);
 
         //initializing wordgrid, lettergrid and their corresponding arrayadaapters
+
         newGame();
 
         // Set Time before
@@ -96,12 +100,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
                 if(wordGuessed(wordList,word)){
                     goToWinActivity();
-                    /*
-                    TextView title = findViewById(R.id.title);
-                    title.setText("Du har vundet");
-                    wordPointer++;
-                    newGame();
-                    */
                 }
 
                 letterAdapter.notifyDataSetChanged();
@@ -122,6 +120,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         timeAfter = new Date().getTime();
         // Calculate score
         int score = (int) 100000 - ((int)timeAfter - (int)timeBefore);
+        if(score < 0){
+            score = 0;
+        }
 
         Intent intent = new Intent(this, WinActivity.class);
         intent.putExtra("EXTRA_SCORE", score);

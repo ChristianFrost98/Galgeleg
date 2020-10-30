@@ -35,4 +35,7 @@
     <string name="you_geussed">You Geussed:</string>
     <string name="highscore">Highscore</string>
     <string name="next_level">Next Level</string>
+    <string name="levels">Levels</string>
+    <string name="_1">1</string>
+    <string name="checkmark">checkmark</string>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:soundEffectsEnabled="false"
     android:splitMotionEvents="false"
-    tools:context=".MainActivity">
+    tools:context=".Acticity.GeussingActivity">
 
     <TextView
         android:id="@+id/title"

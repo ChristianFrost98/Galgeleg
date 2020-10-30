@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.Acticity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,13 +10,10 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.example.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -61,14 +58,14 @@ public class WinActivity extends AppCompatActivity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         int triesAtLevel = prefs.getInt("level" + level,0);
-        for(int i = 1;i<triesAtLevel;i++){
-            int storedScore = prefs.getInt("level" + "_" + i, -1);
+        for(int i = 1;i<triesAtLevel+1;i++){
+            int storedScore = prefs.getInt("level"+ level + "_" + i, -1);
             highScores.add(storedScore);
         }
         // Add new score
         highScores.add(score);
         int newScorePointer = triesAtLevel+1;
-        prefs.edit().putInt("level" + "_" + newScorePointer,score).apply();
+        prefs.edit().putInt("level"+ level + "_" + newScorePointer,score).apply();
         prefs.edit().putInt("level" + level,newScorePointer).apply();
 
         //Sort highscore
@@ -78,7 +75,7 @@ public class WinActivity extends AppCompatActivity {
         for(int i=0;i<highScores.size();i++) {
             TextView highScoreView = new TextView(this);
             if(i%2 == 0){
-                highScoreView.setBackgroundColor(Color.parseColor("#3FBF3F"));
+                highScoreView.setBackgroundColor(Color.parseColor("#4FBB3E"));
             }
             highScoreView.setText(""+highScores.get(i));
             highScoreView.setHeight(80);
@@ -89,11 +86,11 @@ public class WinActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         if(view == next_level){
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, GeussingActivity.class);
             intent.putExtra("EXTRA_LEVEL", ++level);
             startActivity(intent);
         } else if(view == try_again){
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, GeussingActivity.class);
             intent.putExtra("EXTRA_LEVEL", level);
             startActivity(intent);
         }

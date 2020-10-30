@@ -1,9 +1,11 @@
-package com.example.myapplication;
+package com.example.myapplication.Acticity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.myapplication.R;
 
 public class LoseActivity extends AppCompatActivity {
 
