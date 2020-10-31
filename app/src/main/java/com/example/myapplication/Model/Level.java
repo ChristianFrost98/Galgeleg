@@ -1,16 +1,28 @@
 package com.example.myapplication.Model;
 
+import java.util.ArrayList;
+
 public class Level  {
 
     String level;
     boolean cleared;
     String word;
+    ArrayList<Integer> highscores;
 
-    public Level(String level,boolean cleared,String word)
+    public Level(String level, boolean cleared, String word, ArrayList<Integer> highscores)
     {
         this.level=level;
         this.cleared=cleared;
         this.word = word;
+        this.highscores = highscores;
+    }
+
+    public ArrayList<Integer> getHighscores() {
+        return highscores;
+    }
+
+    public void setHighscores(ArrayList<Integer> highscores) {
+        this.highscores = highscores;
     }
 
 

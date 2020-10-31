@@ -2,24 +2,20 @@ package com.example.myapplication.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.myapplication.Model.GeussWord;
 import com.example.myapplication.Model.Letter;
-import com.example.myapplication.Model.Level;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
 
 public class GeussWordAdapter extends ArrayAdapter {
 
-    ArrayList<GeussWord> geussWords = new ArrayList<>();
+    ArrayList<Letter> geussWords = new ArrayList<>();
 
     public GeussWordAdapter(Context context, int textViewResourceId, ArrayList objects) {
         super(context, textViewResourceId, objects);

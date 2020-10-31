@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/lose_galge"
+        android:layout_width="221dp"
+        android:layout_height="210dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:srcCompat="@drawable/forkert6"
+        android:contentDescription="@string/hangman_lose" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/akronim"
+        android:text="@string/you_died"
+        android:textColor="#FF0101"
+        android:textSize="80sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linear_popup"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="32dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lose_galge">
+
+        <ImageView
+            android:id="@+id/try_again_popup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/view_level_button"
+            android:focusable="true"
+            android:tint="#008C9EFF"
+            app:srcCompat="@drawable/try_again" />
+
+        <ImageView
+            android:id="@+id/home_popup"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:contentDescription="@string/next_level_button"
+            android:focusable="true"
+            android:tint="#00000000"
+            app:srcCompat="@drawable/home" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

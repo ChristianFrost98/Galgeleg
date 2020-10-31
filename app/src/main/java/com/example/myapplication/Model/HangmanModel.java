@@ -1,35 +1,14 @@
 package com.example.myapplication.Model;
 
-import android.content.SharedPreferences;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class HangmanModel {
       // Hashmap with contains current word, and knows if its geussed or not
     public static  String currentWord;
-    public static  ArrayList<GeussWord> geussWordList = new ArrayList<GeussWord>();
+    public static  ArrayList<Letter> geussWordList = new ArrayList<Letter>();
 
-
-    public static ArrayList<Level> levels = new ArrayList<Level>(){
-        {
-            add(0,new Level("1",false,"BIL"));
-            add(1,new Level("2",false,"COMPUTER"));
-            add(2,new Level("3",false,"MOTORVEJ"));
-            add(3,new Level("4",false,"BUSRUTE"));
-            add(4,new Level("5",false,"GANGSTI"));
-            add(5,new Level("6",false,"SKOVSNEGEL"));
-            add(6,new Level("7",false,"SOLSORT"));
-            add(7,new Level("8",false,"TYVE"));
-
-        }
-    };
-
+    // Arraylist of hangman levels
+    public static ArrayList<Level> levels = new ArrayList<Level>();
 
     // Letter user can pick
     public static ArrayList<Letter> alphabet = new ArrayList<Letter>(){
@@ -64,15 +43,4 @@ public class HangmanModel {
             add(27,new Letter('Å',false));
         }
     };
-
-    // Status of game
-    public static  String status;
-
-    // Current score
-    public static  int score;
-
-    // highScores
-    public static ArrayList<Integer> highScores;
-
-
-}
+    }

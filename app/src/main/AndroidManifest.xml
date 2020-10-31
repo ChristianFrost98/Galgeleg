@@ -15,10 +15,9 @@
         tools:ignore="AllowBackup">
         <activity android:name=".Activity.LevelActivity" />
         <activity android:name=".Activity.WinActivity" />
-        <activity android:name=".Activity.LoseActivity" />
         <activity android:name=".Activity.GeussingActivity" />
         <activity
-            android:name=".Activity.OpstartActivity"
+            android:name=".Activity.StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

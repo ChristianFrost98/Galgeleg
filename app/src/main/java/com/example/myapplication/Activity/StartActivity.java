@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.R;
 
-public class OpstartActivity extends AppCompatActivity implements Runnable {
+public class StartActivity extends AppCompatActivity implements Runnable {
 
-    static OpstartActivity opstart = null;
+    static StartActivity opstart = null;
     Handler handler = new Handler(Looper.getMainLooper());
 
     @Override

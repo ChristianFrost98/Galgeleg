@@ -45,7 +45,7 @@
         android:id="@+id/sc"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayoutButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayoutButtons"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -83,7 +83,7 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayoutButtons"
         android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_weight="1"
@@ -99,7 +99,6 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:contentDescription="@string/view_level_button"
-            android:src="@mipmap/ic_launcher"
             android:tint="#8C9EFF"
             app:srcCompat="@drawable/menu"
             android:clickable="true"
@@ -110,17 +109,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"
             android:tint="#388E3C"
             app:srcCompat="@drawable/arrow_right"
             android:contentDescription="@string/next_level_button"
             android:clickable="true"
             android:focusable="true" />
-
-
     </LinearLayout>
-
-
 
 
     <TextView

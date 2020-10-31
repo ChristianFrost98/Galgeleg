@@ -17,10 +17,7 @@ import com.example.myapplication.R;
 
 
 public class LevelActivity extends AppCompatActivity {
-    ArrayAdapter<String> levelAdapter;
     GridView levelGrid;
-    SharedPreferences prefs;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +25,11 @@ public class LevelActivity extends AppCompatActivity {
         setContentView(R.layout.activity_level);
 
         // Retrieve store levels data
-        HangmanLogic.storePrefs(this);
-        HangmanLogic.retrievePrefs(this);
-
+        if(HangmanModel.levels.size() == 0){
+            HangmanLogic.retrievePrefs(this);
+        } else {
+            HangmanLogic.storePrefs(this);
+        }
 
         // Iniciate view
         levelGrid = findViewById(R.id.levelGrid);
@@ -43,20 +42,17 @@ public class LevelActivity extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                goToLoseActivity(position);
+                gotToLevel(position);
             }
         });
-
-
     }
 
 
-    public void goToLoseActivity(int level){
+    public void gotToLevel(int level){
         Intent intent = new Intent(this, GeussingActivity.class);
         intent.putExtra("EXTRA_LEVEL", level);
         startActivity(intent);
     }
-
 }
 
 

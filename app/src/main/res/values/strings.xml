@@ -41,4 +41,6 @@
     <string name="textfield_label" />
     <string name="view_level_button">view level button</string>
     <string name="next_level_button">next level button</string>
+    <string name="you_died">You died</string>
+    <string name="hangman_lose">hangman lose</string>
 </resources>
