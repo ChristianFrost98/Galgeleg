@@ -101,15 +101,14 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
                     GeussWordAdapter.notifyDataSetChanged();
                 } else {
                     setGalgeImage();
+                    if(wrongGuess == 6){
+                        createLosePopup();
+                    }
                 }
 
                 if(HangmanLogic.isWordGuessed()){
                     HangmanModel.levels.get(wordPointer).setCleared(true);
                     goToWinActivity();
-                }
-
-                if(wrongGuess == 6){
-                    createLosePopup();
                 }
             }
         });

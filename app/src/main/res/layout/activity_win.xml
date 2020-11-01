@@ -96,13 +96,13 @@
         <ImageView
             android:id="@+id/view_levels"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="60dp"
             android:layout_weight="1"
-            android:contentDescription="@string/view_level_button"
-            android:tint="#8C9EFF"
-            app:srcCompat="@drawable/menu"
             android:clickable="true"
-            android:focusable="true"/>
+            android:contentDescription="@string/view_level_button"
+            android:focusable="true"
+            android:tint="#001F2543"
+            app:srcCompat="@drawable/home" />
 
         <ImageView
             android:id="@+id/next_level"
