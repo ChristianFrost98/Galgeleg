@@ -73,7 +73,7 @@ public class HangmanLogic {
 
     public static void resetGame(){
         // Reset letters
-        for(int i=0;i<HangmanModel.alphabet.size()-1;i++){
+        for(int i=0;i<HangmanModel.alphabet.size();i++){
             HangmanModel.alphabet.get(i).setGeussed(false);
         }
         // Reset words

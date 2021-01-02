@@ -43,4 +43,6 @@
     <string name="next_level_button">next level button</string>
     <string name="you_died">You died</string>
     <string name="hangman_lose">hangman lose</string>
+    <string name="galgeleg">Galgeleg</string>
+    <string name="you_guessed">You guessed:</string>
 </resources>

@@ -30,7 +30,6 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
     ImageView galge;
     GridView letterGrid;
     GridView wordGrid;
-    TextView bokstav;
     String word;
     ImageView home_popup;
     ImageView try_again_popup;
@@ -57,7 +56,6 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
         galge = findViewById(R.id.galge);
         letterGrid = findViewById(R.id.letterGrid);
         wordGrid = findViewById(R.id.wordGrid);
-        bokstav = findViewById(R.id.bokstav);
 
         // Get information from intent
         wordPointer = getIntent().getIntExtra("EXTRA_LEVEL",0);
@@ -101,7 +99,7 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
                     GeussWordAdapter.notifyDataSetChanged();
                 } else {
                     setGalgeImage();
-                    if(wrongGuess == 6){
+                    if(wrongGuess > 6){
                         createLosePopup();
                     }
                 }
@@ -137,7 +135,7 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
         Intent intent = new Intent(this, WinActivity.class);
         intent.putExtra("EXTRA_SCORE", score);
         intent.putExtra("EXTRA_LEVEL", wordPointer);
-        intent.putExtra("EXTRA_WORD", word);
+        intent.putExtra("EXTRA_WORD", HangmanModel.currentWord);
         startActivity(intent);
     }
 
