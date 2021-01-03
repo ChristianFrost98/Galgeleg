@@ -15,6 +15,8 @@ import com.example.myapplication.Model.HangmanModel;
 import com.example.myapplication.Adapter.LevelAdapter;
 import com.example.myapplication.R;
 
+import java.io.IOException;
+
 
 public class LevelActivity extends AppCompatActivity {
     GridView levelGrid;
@@ -26,7 +28,11 @@ public class LevelActivity extends AppCompatActivity {
 
         // Retrieve store levels data
         if(HangmanModel.levels.size() == 0){
-            HangmanLogic.retrievePrefs(this);
+            try {
+                HangmanLogic.retrievePrefs(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
             HangmanLogic.storePrefs(this);
         }

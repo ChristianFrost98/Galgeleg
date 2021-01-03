@@ -6,20 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.myapplication.Adapter.GeussWordAdapter;
 import com.example.myapplication.Adapter.LetterAdapter;
 import com.example.myapplication.Logic.HangmanLogic;
 import com.example.myapplication.Model.HangmanModel;
 import com.example.myapplication.Model.Letter;
-import com.example.myapplication.Model.Level;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -46,6 +45,8 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
     AlertDialog.Builder dialogBuilder;
     AlertDialog dialog;
 
+    // Mediaplayer
+    MediaPlayer mp;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -55,7 +56,9 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
         // Hent af views
         galge = findViewById(R.id.galge);
         letterGrid = findViewById(R.id.letterGrid);
+
         wordGrid = findViewById(R.id.wordGrid);
+
 
         // Get information from intent
         wordPointer = getIntent().getIntExtra("EXTRA_LEVEL",0);
@@ -97,17 +100,24 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
                 String guessedLetter = HangmanModel.alphabet.get(position).getLetter().toString();
                 if(HangmanLogic.wordContainLetter(guessedLetter)){
                     GeussWordAdapter.notifyDataSetChanged();
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.correct_geuss);
                 } else {
                     setGalgeImage();
+
                     if(wrongGuess > 6){
                         createLosePopup();
+                        mp = MediaPlayer.create(getApplicationContext(), R.raw.game_over);
+                    } else{
+                        mp = MediaPlayer.create(getApplicationContext(), R.raw.failed_geuss);
                     }
                 }
 
                 if(HangmanLogic.isWordGuessed()){
                     HangmanModel.levels.get(wordPointer).setCleared(true);
+                    mp = MediaPlayer.create(getApplicationContext(), R.raw.game_won);
                     goToWinActivity();
                 }
+                mp.start();
             }
         });
     }
