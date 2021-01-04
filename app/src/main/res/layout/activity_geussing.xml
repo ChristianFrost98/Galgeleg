@@ -8,6 +8,7 @@
     android:splitMotionEvents="false"
     tools:context=".Activity.GeussingActivity">
 
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"

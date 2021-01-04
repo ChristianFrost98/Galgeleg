@@ -3,6 +3,9 @@ package com.example.myapplication.Model;
 import java.util.ArrayList;
 
 public class HangmanModel {
+    // Reset flag
+    public static boolean justResat = false;
+
       // Hashmap with contains current word, and knows if its geussed or not
     public static  String currentWord;
     public static  ArrayList<Letter> geussWordList = new ArrayList<Letter>();

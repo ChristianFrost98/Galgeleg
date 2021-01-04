@@ -45,4 +45,6 @@
     <string name="hangman_lose">hangman lose</string>
     <string name="galgeleg">Galgeleg</string>
     <string name="you_guessed">You guessed:</string>
+    <string name="retrieving_levels">retrieving levels...</string>
+    <string name="reset">Reset</string>
 </resources>

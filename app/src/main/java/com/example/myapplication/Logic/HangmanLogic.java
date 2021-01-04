@@ -2,6 +2,9 @@ package com.example.myapplication.Logic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
 import com.example.myapplication.Model.HangmanModel;
@@ -20,6 +23,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class HangmanLogic {
 
@@ -31,16 +38,16 @@ public class HangmanLogic {
                 guessedword.append(currentGuessWord.getLetter().toString());
             }
         }
-        return guessedword.toString().equals(HangmanModel.currentWord);
+        return guessedword.toString().equals(HangmanModel.currentWord.toUpperCase());
     }
 
 
     public static boolean wordContainLetter(String letter){
         boolean containsLetter = false;
         for(int i=0;i<HangmanModel.currentWord.length();i++){
-            String letterInWord = String.valueOf(HangmanModel.currentWord.charAt(i));
+            String letterInWord = String.valueOf(HangmanModel.currentWord.charAt(i)).toUpperCase();
 
-            if(letter.equals(letterInWord)){
+            if(letter.toUpperCase().equals(letterInWord)){
                 HangmanModel.geussWordList.set(i,new Letter(letterInWord.charAt(0),true));
                 containsLetter = true;
             }
@@ -67,7 +74,7 @@ public class HangmanLogic {
 
         // Retrieve level info
         String levelsRetrieved = prefs.getString("levelsJSON","0");
-        if(levelsRetrieved.equals("0")){
+        if(levelsRetrieved.equals("0") || HangmanModel.justResat){
             initArrays();
         } else {
             Gson gson = new Gson();
@@ -88,27 +95,28 @@ public class HangmanLogic {
         }
     }
 
-    // Fra nordfalk github - galgeleg
-    public static String getURLData(String url) throws IOException {
-        try{
-            BufferedReader br = new BufferedReader(new InputStreamReader(new URL(url).openStream()));
+
+    public static String getURLData(String urlString) {
+        try  {
+            BufferedReader br = new BufferedReader(new InputStreamReader(new URL(urlString).openStream()));
             StringBuilder sb = new StringBuilder();
             String linje = br.readLine();
             while (linje != null) {
                 sb.append(linje + "\n");
                 linje = br.readLine();
             }
+            br.close();
             return sb.toString();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
-        return null;
     }
 
 
     public static List<String> retrieveWords() throws IOException {
         List<String> words;
-        String data = getURLData("https://www.york.ac.uk/teaching/cws/wws/webpage1.html");
+        String data = getURLData("https://nyheder.tv2.dk/");
 
         data = data.substring(data.indexOf("<body")). // fjern headere
                 replaceAll("<.+?>", " ").toLowerCase(). // fjern tags
@@ -126,12 +134,37 @@ public class HangmanLogic {
         return words;
     }
 
+    public static int randomWord(List<String> words){
+        Random r = new Random();
+        int low = 200;
+        int high = words.size();
+        return r.nextInt(high-low) + low;
+    }
 
     public static void initArrays() throws IOException {
+        // Clear if exiting array - for the reset
+        if(HangmanModel.levels.size() != 0){
+            HangmanModel.levels.clear();
+        }
+
+        // If just resat, from flag
+        HangmanModel.justResat = false;
+
+        // Retrieved words
         List<String> words = retrieveWords();
+
+        // Generate random number - the starting point
+        int count = randomWord(words);
+
+        // Make 20 levels, from random starting point in words list
         if(words.size() != 0) {
-            for (int i = 0; i < 20; i++) {
-                HangmanModel.levels.add(i, new Level(String.valueOf(i), false, words.get(i), new ArrayList<Integer>()));
+            int i = 0;
+            while (HangmanModel.levels.size() < 20){
+                if(!(words.get(count).equals(""))){
+                    HangmanModel.levels.add(i, new Level(String.valueOf(i+1), false, words.get(count), new ArrayList<Integer>()));
+                    i++;
+                }
+                count = randomWord(words);
             }
         } else {
             // Add to levels, if no data is retrieved

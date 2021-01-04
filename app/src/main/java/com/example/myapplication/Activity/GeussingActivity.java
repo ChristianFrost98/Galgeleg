@@ -52,7 +52,7 @@ public class GeussingActivity extends AppCompatActivity implements OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fedeste_akt);
+        setContentView(R.layout.activity_geussing);
         // Hent af views
         galge = findViewById(R.id.galge);
         letterGrid = findViewById(R.id.letterGrid);
